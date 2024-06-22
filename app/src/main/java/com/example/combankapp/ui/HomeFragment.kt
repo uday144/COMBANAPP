@@ -39,7 +39,6 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.transactionsData.collect { data ->
                 data?.let {
-                    println("data$it")
                     processTransactionsData(it)
                 }
             }
@@ -67,7 +66,6 @@ class HomeFragment : Fragment() {
             val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(transaction)
             findNavController().navigate(action)
         })
-        println("groupedTransactions$groupedTransactions")
     }
 
     override fun onDestroyView() {
