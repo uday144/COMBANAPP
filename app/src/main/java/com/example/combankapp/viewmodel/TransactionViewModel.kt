@@ -12,14 +12,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TransactionViewModel @Inject constructor(private val repository: TransactionRepository) : ViewModel() {
-    private val _transactions = MutableStateFlow<TransactionData?>(null)
-    val transactions: StateFlow<TransactionData?> = _transactions
+    private val _transactionsData = MutableStateFlow<TransactionData?>(null)
+    val transactionsData: StateFlow<TransactionData?> = _transactionsData
 
     init {
         viewModelScope.launch {
             repository.getTransactions().collect {
-                _transactions.value = it
+                _transactionsData.value = it
             }
         }
     }
+
 }
