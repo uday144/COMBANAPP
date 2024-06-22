@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ComBankApp</string>
+    <string name="available">Available</string>
+    <string name="available_amount">\u0024%1$s</string>
+    <string name="balance">Balance</string>
+    <string name="available_balance">\u0024%1$s</string>
+    <string name="pending">Pending</string>
+    <string name="pending_balance">-$137.80</string>
+    <string name="pending_trn"><font color="#FF231F20">%1$s</font> <font
+        color="#FF706D6E">%2$s</font></string>
+    <string name="bsb_account">BSB %1s Account %2s</string>
+    <string name="available_balance_neg">-\u0024%1$s</string>
 </resources>

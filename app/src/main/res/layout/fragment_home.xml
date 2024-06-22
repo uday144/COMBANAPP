@@ -9,7 +9,7 @@
         android:id="@+id/accountSummaryLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:paddingTop="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -18,8 +18,9 @@
             android:id="@+id/availableTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Available"
-            android:textSize="16sp"
+            android:text="@string/available"
+            android:paddingLeft="@dimen/padding_medium"
+            android:textSize="@dimen/text_medium"
             android:textColor="@android:color/black"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -28,45 +29,89 @@
             android:id="@+id/availableAmountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$226.76"
-            android:textSize="24sp"
+            android:textSize="@dimen/text_large"
+            android:paddingLeft="@dimen/padding_medium"
             android:textColor="@android:color/black"
             app:layout_constraintTop_toBottomOf="@id/availableTextView"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="@dimen/padding_small" />
 
         <TextView
             android:id="@+id/balanceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Balance $246.70"
-            android:textSize="16sp"
+            android:paddingLeft="@dimen/padding_medium"
+            android:text="@string/balance"
+            android:textSize="@dimen/text_medium"
             android:textColor="@android:color/darker_gray"
             app:layout_constraintTop_toBottomOf="@id/availableAmountTextView"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="@dimen/padding_small" />
+
+        <TextView
+            android:id="@+id/balanceTextViewValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/padding_small"
+            android:textSize="@dimen/text_medium"
+            android:textColor="@color/com_bank_dark"
+            app:layout_constraintTop_toBottomOf="@id/availableAmountTextView"
+            app:layout_constraintLeft_toRightOf="@id/balanceTextView"
+            app:layout_constraintBaseline_toBaselineOf="@id/balanceTextView"
+            android:layout_marginTop="@dimen/padding_small" />
 
         <TextView
             android:id="@+id/pendingTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pending -$137.80"
-            android:textSize="16sp"
+            android:paddingLeft="@dimen/padding_medium"
+            android:text="@string/pending"
+            android:textSize="@dimen/text_medium"
             android:textColor="@android:color/darker_gray"
             app:layout_constraintTop_toBottomOf="@id/balanceTextView"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="@dimen/padding_small"  />
+
+        <TextView
+            android:id="@+id/pendingTextViewValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/padding_small"
+            android:textSize="@dimen/text_medium"
+            android:textColor="@color/com_bank_dark"
+            app:layout_constraintTop_toBottomOf="@id/balanceTextView"
+            app:layout_constraintLeft_toRightOf="@id/pendingTextView"
+            app:layout_constraintBaseline_toBaselineOf="@id/pendingTextView"
+            android:layout_marginTop="@dimen/padding_small" />
+
+        <View
+            android:id="@+id/dividerView1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/padding_small"
+            app:layout_constraintTop_toBottomOf="@id/pendingTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@android:color/darker_gray"/>
 
         <TextView
             android:id="@+id/bsbAccountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BSB 062005 Account 1709 5888"
-            android:textSize="16sp"
+            android:paddingLeft="@dimen/padding_medium"
+            android:textSize="@dimen/text_medium"
             android:textColor="@android:color/darker_gray"
-            app:layout_constraintTop_toBottomOf="@id/pendingTextView"
+            app:layout_constraintTop_toBottomOf="@id/dividerView1"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="@dimen/padding_small"/>
+
+        <View
+            android:id="@+id/dividerView2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/padding_small"
+            app:layout_constraintTop_toBottomOf="@id/bsbAccountTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@android:color/darker_gray"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -79,7 +124,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="16dp"
         android:padding="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

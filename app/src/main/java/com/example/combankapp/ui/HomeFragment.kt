@@ -9,7 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.combankapp.R
 import com.example.combankapp.databinding.FragmentHomeBinding
+import com.example.combankapp.models.Account
 import com.example.combankapp.models.Transaction
 import com.example.combankapp.models.TransactionData
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,6 +49,7 @@ class HomeFragment : Fragment() {
 
 
     private fun processTransactionsData(transactionData: TransactionData) {
+        updateAccountSummary(transactionData.account)
         val transactions: List<Transaction> = transactionData.transactions
 
         // Group transactions by date, Using a TreeMap ensures that the keys (dates) are sorted in natural order, which can be useful if you need the transactions to be displayed in a sorted manner
@@ -66,6 +69,14 @@ class HomeFragment : Fragment() {
             val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(transaction)
             findNavController().navigate(action)
         })
+    }
+
+    private fun updateAccountSummary(account: Account) {
+        binding.availableAmountTextView.text = getString(R.string.available_amount, account.available)
+        binding.balanceTextViewValue.text = getString(R.string.available_balance, account.balance)
+        binding.pendingTextViewValue.text = getString(R.string.pending_balance)
+        binding.bsbAccountTextView.text = getString(R.string.bsb_account, account.bsb, account.accountNumber)
+
     }
 
     override fun onDestroyView() {

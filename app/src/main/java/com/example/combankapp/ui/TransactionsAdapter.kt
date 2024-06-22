@@ -2,10 +2,14 @@ package com.example.combankapp.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.combankapp.R
 import com.example.combankapp.databinding.ItemDateGroupBinding
 import com.example.combankapp.databinding.ItemTransactionBinding
 import com.example.combankapp.models.Transaction
+import com.example.combankapp.util.Utils
+import kotlin.math.abs
 
 
 class TransactionsAdapter(
@@ -54,7 +58,7 @@ class TransactionsAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(date: String) {
-            binding.tvDate.text = date
+            binding.tvDate.text = Utils.parseStringToDate(date)
         }
     }
 
@@ -62,8 +66,10 @@ class TransactionsAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(transaction: Transaction) {
-            binding.tvDescription.text = transaction.description
-            binding.tvAmount.text = transaction.amount.toString()
+            binding.tvDescription.text = if(transaction.isPending) itemView.context.getString(R.string.pending_trn, itemView.context.getString(R.string.pending), transaction.description)
+            else transaction.description
+            binding.tvAmount.text =  itemView.context.getString(R.string.available_balance_neg, transaction.amount.substring(1))
+            binding.icon.setImageDrawable(ContextCompat.getDrawable(itemView.context, Utils.getCategoryImage(transaction.category)))
             itemView.setOnClickListener { onItemClick(transaction) }
         }
     }
