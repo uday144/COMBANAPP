@@ -19,8 +19,8 @@
         android:name="com.example.combankapp.ui.DetailFragment"
         android:label="Detail"
         tools:layout="@layout/fragment_detail" >
-       <!-- <argument
+       <argument
             android:name="transaction"
-            app:argType="com.example.combankapp.models.Transaction" />-->
+            app:argType="com.example.combankapp.models.Transaction" />
     </fragment>
 </navigation>

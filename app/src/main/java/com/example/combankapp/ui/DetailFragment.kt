@@ -27,7 +27,7 @@ class DetailFragment : Fragment() {
 
         if (arguments != null) {
             val transaction: Transaction? =
-                requireArguments().getSerializable("transaction") as Transaction?
+                requireArguments().getParcelable("transaction")
             if (transaction != null) {
                 binding?.tvDescription?.text = transaction.description
                 binding?.tvAmount?.text = transaction.amount

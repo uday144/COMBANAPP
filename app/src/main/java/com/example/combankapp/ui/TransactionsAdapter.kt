@@ -8,8 +8,10 @@ import com.example.combankapp.databinding.ItemTransactionBinding
 import com.example.combankapp.models.Transaction
 
 
-class TransactionsAdapter(groupedTransactions: Map<String, List<Transaction>?>) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TransactionsAdapter(
+    private val groupedTransactions: Map<String, List<Transaction>?>,
+    private val onItemClick: (Transaction) -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val items: MutableList<Any> = ArrayList()
 
     init {
@@ -25,14 +27,12 @@ class TransactionsAdapter(groupedTransactions: Map<String, List<Transaction>?>) 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        if (viewType == VIEW_TYPE_DATE) {
-            val binding: ItemDateGroupBinding =
-                ItemDateGroupBinding.inflate(inflater, parent, false)
-            return DateViewHolder(binding)
+        return if (viewType == VIEW_TYPE_DATE) {
+            val binding = ItemDateGroupBinding.inflate(inflater, parent, false)
+            DateViewHolder(binding)
         } else {
-            val binding: ItemTransactionBinding =
-                ItemTransactionBinding.inflate(inflater, parent, false)
-            return TransactionViewHolder(binding)
+            val binding = ItemTransactionBinding.inflate(inflater, parent, false)
+            TransactionViewHolder(binding)
         }
     }
 
@@ -50,20 +50,21 @@ class TransactionsAdapter(groupedTransactions: Map<String, List<Transaction>?>) 
         return items.size
     }
 
-    internal class DateViewHolder(private val binding: ItemDateGroupBinding) :
-        RecyclerView.ViewHolder(binding.getRoot()) {
+    inner class DateViewHolder(private val binding: ItemDateGroupBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(date: String?) {
+        fun bind(date: String) {
             binding.tvDate.text = date
         }
     }
 
-    internal class TransactionViewHolder(private val binding: ItemTransactionBinding) :
-        RecyclerView.ViewHolder(binding.getRoot()) {
+    inner class TransactionViewHolder(private val binding: ItemTransactionBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(transaction: Transaction) {
             binding.tvDescription.text = transaction.description
-            binding.tvAmount.text = transaction.amount
+            binding.tvAmount.text = transaction.amount.toString()
+            itemView.setOnClickListener { onItemClick(transaction) }
         }
     }
 
@@ -72,3 +73,4 @@ class TransactionsAdapter(groupedTransactions: Map<String, List<Transaction>?>) 
         private const val VIEW_TYPE_TRANSACTION = 1
     }
 }
+
