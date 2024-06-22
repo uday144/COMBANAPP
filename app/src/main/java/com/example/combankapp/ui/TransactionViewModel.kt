@@ -1,4 +1,4 @@
-package com.example.combankapp.viewmodel
+package com.example.combankapp.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.combankapp.databinding.FragmentHomeBinding
 import com.example.combankapp.models.Transaction
 import com.example.combankapp.models.TransactionData
-import com.example.combankapp.viewmodel.TransactionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.Collections
